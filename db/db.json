@@ -1,0 +1,34 @@
+{
+  "events": [
+    {
+      "name": "asqwerqw",
+      "start-time": "06:18",
+      "end-date": "04/19/2023 04:19:00",
+      "description": "asdfasdfas",
+      "start-date": "04/01/2023 06:18:00",
+      "compareStart": "04/01/2023",
+      "compareEnd": "04/19/2023",
+      "id": 1
+    },
+    {
+      "name": "qweerqwe",
+      "start-time": "06:26",
+      "end-date": "05/27/2023 04:26:00",
+      "description": "asdfasdf",
+      "start-date": "05/04/2023 06:26:00",
+      "compareStart": "05/04/2023",
+      "compareEnd": "05/27/2023",
+      "id": 2
+    },
+    {
+      "name": "asdfasdfasd",
+      "start-time": "07:26",
+      "end-date": "06/16/2024 04:26:00",
+      "description": "asdfasdf",
+      "start-date": "07/04/2023 07:26:00",
+      "compareStart": "07/04/2023",
+      "compareEnd": "06/16/2024",
+      "id": 3
+    }
+  ]
+}
