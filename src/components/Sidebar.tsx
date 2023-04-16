@@ -40,8 +40,8 @@ export const Sidebar = () => {
               to={item.href}
               className={combineClassNames(
                 current === item.name
-                  ? "bg-teal-400 text-white"
-                  : "text-gray-800 hover:bg-teal-600 hover:text-white hover:bg-opacity-75",
+                  ? "bg-indigo-500 text-white"
+                  : "text-gray-800 hover:bg-indigo-500 hover:text-white hover:bg-opacity-75",
                 "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
               )}
               onClick={() => setCurrent(item.name)}

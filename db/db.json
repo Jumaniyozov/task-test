@@ -11,14 +11,48 @@
       "id": 4
     },
     {
-      "name": "qwerqwer",
-      "start-time": "21:52",
-      "end-date": "19/10/2040 19:53:00",
-      "description": "asdfasdf",
-      "start-date": "05/04/2039 21:52:00",
-      "compareStart": "05/04/2039",
-      "compareEnd": "19/10/2040",
-      "id": 5
+      "name": "werwerwer",
+      "start-time": "07:27",
+      "end-date": "18/04/2023 03:24:00",
+      "description": "sererser",
+      "start-date": "10/04/2023 07:27:00",
+      "compareStart": "10/04/2023",
+      "compareEnd": "18/04/2023",
+      "id": 6
+    }
+  ],
+  "boards": [
+    {
+      "name": "rqwer",
+      "createdAt": "17/04/2023 03:25:34",
+      "type": "board",
+      "id": 1
+    },
+    {
+      "name": "rrqqrq",
+      "createdAt": "17/04/2023 03:25:36",
+      "type": "board",
+      "id": 2
+    }
+  ],
+  "tasks": [
+    {
+      "name": "asdf",
+      "tag": "asdf",
+      "boardId": "1",
+      "createdAt": "17/04/2023 03:25:39",
+      "tagColors": "red",
+      "type": "task",
+      "id": 1
+    },
+    {
+      "name": "ffff",
+      "tag": "fff",
+      "boardId": "2",
+      "createdAt": "17/04/2023 03:25:44",
+      "tagColors": "lime",
+      "type": "task",
+      "id": 2
     }
   ]
 }

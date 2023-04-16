@@ -20,8 +20,9 @@
 *::-webkit-scrollbar {
     width: .5rem;
 }
+
 *:hover::-webkit-scrollbar-thumb {
-    visibility:visible;
+    visibility: visible;
 }
 
 *::-webkit-scrollbar-track {
@@ -32,7 +33,7 @@
 *::-webkit-scrollbar-thumb {
     visibility: hidden;
     width: .5rem;
-    background-color: #0ca897;
+    background-color: #6366F1FF;
     border-radius: 10rem;
     /*outline: 1px solid hotpink;*/
 }
