@@ -7,10 +7,11 @@ import {
 import { RootLayout } from "@/pages/RootLayout";
 import { Canban } from "@/pages/Canban";
 import { Calendar, CalendarActions, CalendarLoader } from "@/pages/Calendar";
+import { GlobalErrorPage } from "@/pages/Error";
 
 export const root = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<RootLayout />}>
+    <Route path="/" element={<RootLayout />} errorElement={<GlobalErrorPage />}>
       <Route path="/canban" element={<Canban />} />
       <Route
         path="/calendar"
@@ -21,4 +22,3 @@ export const root = createBrowserRouter(
     </Route>
   )
 );
-

@@ -14,6 +14,10 @@ export interface EventType {
 interface EventState {
   events: EventType[];
   setEvents: (events: EventType[]) => void;
+  eventError: string | null;
+  eventActionSuccess: boolean;
+  setEventError: (val: string | null) => void;
+  setActionSuccess: (val: boolean) => void;
 }
 
 export const useEventStore = create<EventState>()(
@@ -21,7 +25,12 @@ export const useEventStore = create<EventState>()(
     persist(
       (set) => ({
         events: [],
+        eventError: null,
+        eventActionSuccess: false,
         setEvents: (events) => set((state) => ({ ...state, events })),
+        setEventError: (msg) => set((state) => ({ ...state, eventError: msg })),
+        setActionSuccess: (val) =>
+          set((state) => ({ ...state, eventActionSuccess: val })),
       }),
       {
         name: "events-storage",

@@ -1,22 +1,27 @@
-import {Fragment, useEffect, useRef, useState} from "react";
+import { Fragment, MouseEvent, useRef, useState } from "react";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/20/solid";
 import { combineClassNames } from "@/utils/combineClassNames";
 import { useCalendarStore } from "@/store/calendar";
 import { EventModal } from "./EventModal";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { renderCalendar } from "@/utils/createDays";
 import { format } from "date-fns";
 import { useEventStore } from "@/store/events";
+import { CustomSelect } from "@/components/FormUtils/CustomSelect";
+import { createMonths, createYears } from "@/utils/createYears";
+import { useIsSuccess } from "@/hooks/useIsSuccess";
 
 export const MonthView = () => {
+  useIsSuccess();
   const date = useRef(new Date());
   const [currYear, setCurrYear] = useState(date.current.getFullYear());
   const [currMonth, setCurrMonth] = useState(date.current.getMonth());
 
   const days = renderCalendar(currYear, currMonth, date.current);
+  const years = createYears();
+  const months = createMonths();
 
-  const { openModal, closeModal, isSuccess, setIsSuccess, error, setError } =
-    useCalendarStore();
+  const { openModal } = useCalendarStore();
 
   const { events } = useEventStore();
 
@@ -25,36 +30,33 @@ export const MonthView = () => {
     setCurrYear(date.current.getFullYear());
   };
 
-  useEffect(() => {
-    if (error) {
-      toast.error(error, {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      setError(null);
-    }
+  const handleCurrentYear = (val: number) => {
+    setCurrYear(val);
+  };
 
-    if (isSuccess && !error) {
-      closeModal();
-      toast.success("Event successfully added", {
-        position: "bottom-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "light",
-      });
-      setIsSuccess(false);
-    }
-  }, [isSuccess, error]);
+  const handleCurentMonth = (val: number) => {
+    setCurrMonth(val);
+  };
+
+  const handleNextMonth = () => {
+    setCurrMonth((prev) => {
+      if (currMonth >= 11) {
+        setCurrYear((prev) => prev + 1);
+        return 0;
+      }
+      return prev + 1;
+    });
+  };
+
+  const handlePreviousMonth = () => {
+    setCurrMonth((prev) => {
+      if (currMonth <= 0) {
+        setCurrYear((prev) => prev - 1);
+        return 11;
+      }
+      return prev - 1;
+    });
+  };
 
   return (
     <div className="lg:flex lg:h-full lg:flex-col">
@@ -78,12 +80,28 @@ export const MonthView = () => {
             {format(new Date(currYear, currMonth), "yyyy")}
           </div>
         </h1>
+
+        <div className="flex items-center gap-2">
+          <CustomSelect
+            label="Year"
+            data={years}
+            selected={currYear}
+            handleSelect={handleCurrentYear}
+          />
+          <CustomSelect
+            label="Month"
+            customSelectLabel={months[currMonth].id}
+            data={months}
+            selected={currMonth}
+            handleSelect={handleCurentMonth}
+          />
+        </div>
         <div className="flex items-center">
           <div className="flex items-center rounded-md shadow-sm md:items-stretch">
             <button
               type="button"
               className="flex items-center justify-center rounded-l-md border border-r-0 border-gray-300 bg-white py-2 pl-3 pr-4 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50"
-              onClick={() => setCurrMonth((prev) => prev - 1)}
+              onClick={handlePreviousMonth}
             >
               <span className="sr-only">Previous month</span>
               <ChevronLeftIcon className="h-5 w-5" aria-hidden="true" />
@@ -99,7 +117,7 @@ export const MonthView = () => {
             <button
               type="button"
               className="flex items-center justify-center rounded-r-md border border-l-0 border-gray-300 bg-white py-2 pl-4 pr-3 text-gray-400 hover:text-gray-500 focus:relative md:w-9 md:px-2 md:hover:bg-gray-50"
-              onClick={() => setCurrMonth((prev) => prev + 1)}
+              onClick={handleNextMonth}
             >
               <span className="sr-only">Next month</span>
               <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
@@ -156,7 +174,10 @@ export const MonthView = () => {
                     {events.map((event) => (
                       <Fragment key={event.id}>
                         {event.compareStart === day.compare && (
-                          <li key={event.id} className="hidden first:flex">
+                          <li
+                            key={event.id}
+                            className="hidden first:flex overflow-hidden bg-green-300 h-full w-full"
+                          >
                             <div className="group flex">
                               <p className="flex-auto truncate font-medium text-gray-900 group-hover:text-indigo-600">
                                 {event.name}

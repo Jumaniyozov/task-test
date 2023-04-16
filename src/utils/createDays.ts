@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import {DATE_FORMAT} from "@/utils/DateFormat";
 
 interface Day {
   key: string | number;
@@ -32,7 +33,7 @@ export const renderCalendar = (
       day: day,
       isCurrentMonth: false,
       isToday: false,
-      compare: format(currDate, "MM/dd/yyyy"),
+      compare: format(currDate, DATE_FORMAT.days),
     });
   }
 
@@ -51,7 +52,7 @@ export const renderCalendar = (
       day: i,
       isCurrentMonth: true,
       isToday: isToday,
-      compare: format(currDate, "MM/dd/yyyy"),
+      compare: format(currDate, DATE_FORMAT.days),
     });
   }
 
@@ -66,7 +67,7 @@ export const renderCalendar = (
       day: day,
       isCurrentMonth: false,
       isToday: false,
-      compare: format(currDate, "MM/dd/yyyy"),
+      compare: format(currDate, DATE_FORMAT.days),
     });
   }
 

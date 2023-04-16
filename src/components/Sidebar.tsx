@@ -1,6 +1,6 @@
 import { CalendarDaysIcon, ViewColumnsIcon } from "@heroicons/react/24/outline";
-import { Link } from "react-router-dom";
-import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { combineClassNames } from "@/utils/combineClassNames";
 
 const navigation = [
@@ -9,7 +9,21 @@ const navigation = [
 ];
 
 export const Sidebar = () => {
+  const location = useLocation();
   const [current, setCurrent] = useState("Kanban");
+
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/canban": {
+        setCurrent("Kanban");
+        return;
+      }
+      case "/calendar": {
+        setCurrent("Calendar");
+        return;
+      }
+    }
+  }, [location]);
 
   return (
     <div className="flex min-h-0 flex-1 flex-col bg-indigo-700 h-full">

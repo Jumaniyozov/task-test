@@ -1,59 +1,17 @@
 import { ActionFunctionArgs } from "react-router-dom";
-import { format, parseISO, addHours, addMinutes } from "date-fns";
 import { MonthView } from "@/components/Calendar/MonthView";
-import { useCalendarStore } from "@/store/calendar";
 import { useEventStore } from "@/store/events";
+import { calendarHandler } from "@/utils/calendar/handler";
 
 const baseURL = import.meta.env.VITE_API_URL;
-
 export const CalendarActions = async ({ request }: ActionFunctionArgs) => {
   switch (request.method) {
     case "POST": {
-      const formData = await request.formData();
-      const objData = Object.fromEntries(formData);
-      let data = {} as any;
+      return await calendarHandler.post(request);
+    }
 
-      for (const val in objData) {
-        data[val] = objData[val];
-      }
-
-      const endDate = new Date(data["end-date"]);
-      const currDate = useCalendarStore.getState().currDate!;
-
-      const [hours, minutes] = data["start-time"].split(":");
-      let startDate = addMinutes(addHours(new Date(currDate!), hours), minutes);
-
-      if (endDate.getTime() < startDate.getTime()) {
-        useCalendarStore
-          .getState()
-          .setError("End date must be bigger than current date");
-        return { ok: false };
-      }
-
-      data["end-date"] = format(
-        parseISO(data["end-date"]),
-        "MM/dd/yyyy HH:mm:ss"
-      );
-
-      data["start-date"] = format(startDate, "MM/dd/yyyy HH:mm:ss");
-      data["compareStart"] = format(startDate, "MM/dd/yyyy");
-      data["compareEnd"] = format(endDate, "MM/dd/yyyy");
-
-      const res = await fetch(`${baseURL}/events`, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "content-type": "application/json",
-        },
-      });
-
-      if (!res.ok) {
-        throw new Error(res.statusText);
-      }
-
-      useCalendarStore.getState().setIsSuccess(true);
-
-      return { ok: true };
+    case "DELETE": {
+      return await calendarHandler.delete(request);
     }
   }
 };
