@@ -26,10 +26,10 @@ export const Sidebar = () => {
   }, [location]);
 
   return (
-    <div className="flex min-h-0 flex-1 flex-col bg-indigo-700 h-full">
+    <div className="flex min-h-0 flex-1 flex-col bg-indigo-200 h-full">
       <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
         <div className="flex flex-shrink-0 items-center px-4">
-          <h3 className="text-white text-2xl flex justify-center w-full">
+          <h3 className="text-gray-800 text-2xl flex justify-center w-full">
             Task
           </h3>
         </div>
@@ -40,14 +40,14 @@ export const Sidebar = () => {
               to={item.href}
               className={combineClassNames(
                 current === item.name
-                  ? "bg-indigo-800 text-white"
-                  : "text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75",
+                  ? "bg-teal-400 text-white"
+                  : "text-gray-800 hover:bg-teal-600 hover:text-white hover:bg-opacity-75",
                 "group flex items-center px-2 py-2 text-sm font-medium rounded-md"
               )}
               onClick={() => setCurrent(item.name)}
             >
               <item.icon
-                className="mr-3 h-6 w-6 flex-shrink-0 text-indigo-300"
+                className="mr-3 h-6 w-6 flex-shrink-0"
                 aria-hidden="true"
               />
               <span className="flex-1">{item.name}</span>

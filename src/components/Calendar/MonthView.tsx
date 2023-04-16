@@ -4,11 +4,11 @@ import { combineClassNames } from "@/utils/combineClassNames";
 import { useCalendarStore } from "@/store/calendar";
 import { EventModal } from "./EventModal";
 import { ToastContainer } from "react-toastify";
-import { renderCalendar } from "@/utils/createDays";
+import { renderCalendar } from "@/utils/calendar/createDays";
 import { format } from "date-fns";
 import { useEventStore } from "@/store/events";
 import { CustomSelect } from "@/components/FormUtils/CustomSelect";
-import { createMonths, createYears } from "@/utils/createYears";
+import { createMonths, createYears } from "@/utils/calendar/createYears";
 import { useIsSuccess } from "@/hooks/useIsSuccess";
 
 export const MonthView = () => {

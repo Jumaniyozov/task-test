@@ -25,7 +25,7 @@ export const CalendarLoader = async () => {
 
 export const Calendar = () => {
   return (
-    <div className="px-4 pb-4 h-full">
+    <div className="px-4 pb-4 h-screen bg-gradient-to-tr from-blue-200 via-indigo-200 to-pink-200">
       <MonthView />
     </div>
   );

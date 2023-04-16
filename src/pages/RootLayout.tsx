@@ -6,13 +6,13 @@ export const RootLayout = () => {
 
   return (
     <div className="w-full flex">
-      <div className="w-1/5 h-screen">
+      <div className="w-2/12">
         <Sidebar />
         {location.pathname === "/" && (
           <Navigate to="/calendar" replace={true} />
         )}
       </div>
-      <div className="h-screen w-4/5">
+      <div className="w-10/12 h-screen">
         <Outlet />
       </div>
     </div>

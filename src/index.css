@@ -15,3 +15,24 @@
 .bg-404 {
     background: no-repeat center url(./assets/404.svg);
 }
+
+
+*::-webkit-scrollbar {
+    width: .5rem;
+}
+*:hover::-webkit-scrollbar-thumb {
+    visibility:visible;
+}
+
+*::-webkit-scrollbar-track {
+    box-shadow: transparent;
+    width: .5rem;
+}
+
+*::-webkit-scrollbar-thumb {
+    visibility: hidden;
+    width: .5rem;
+    background-color: #0ca897;
+    border-radius: 10rem;
+    /*outline: 1px solid hotpink;*/
+}
