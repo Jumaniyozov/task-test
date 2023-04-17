@@ -11,57 +11,78 @@
       "id": 4
     },
     {
-      "name": "werwerwer",
-      "start-time": "07:27",
-      "end-date": "18/04/2023 03:24:00",
-      "description": "sererser",
-      "start-date": "10/04/2023 07:27:00",
-      "compareStart": "10/04/2023",
-      "compareEnd": "18/04/2023",
-      "id": 6
+      "name": "wqwerqwe",
+      "start-time": "11:07",
+      "end-date": "19/04/2023 09:07:00",
+      "description": "asddd",
+      "start-date": "11/04/2023 11:07:00",
+      "compareStart": "11/04/2023",
+      "compareEnd": "19/04/2023",
+      "id": 5
     }
   ],
   "boards": [
     {
-      "name": "rqwer",
-      "createdAt": "17/04/2023 03:25:34",
+      "name": "Todo",
+      "createdAt": "17/04/2023 10:34:46",
       "type": "board",
       "id": 1
     },
     {
-      "name": "rrqqrq",
-      "createdAt": "17/04/2023 03:25:36",
+      "name": "Canceled",
+      "createdAt": "17/04/2023 10:34:50",
       "type": "board",
       "id": 2
+    },
+    {
+      "name": "Doing",
+      "createdAt": "17/04/2023 10:34:54",
+      "type": "board",
+      "id": 3
+    },
+    {
+      "name": "Done",
+      "createdAt": "17/04/2023 10:35:21",
+      "type": "board",
+      "id": 4
     }
   ],
   "tasks": [
     {
-      "name": "asdf",
-      "tag": "asdf",
-      "boardId": "1",
-      "createdAt": "17/04/2023 03:25:39",
-      "tagColors": "red",
+      "name": "Learn Next.js",
+      "tag": "Priority",
+      "boardId": "3",
+      "createdAt": "17/04/2023 10:35:10",
+      "tagColors": "rose",
       "type": "task",
       "id": 1
     },
     {
-      "name": "ffff",
-      "tag": "fff",
-      "boardId": "2",
-      "createdAt": "17/04/2023 03:25:44",
-      "tagColors": "lime",
+      "name": "Learn React Hooks",
+      "tag": "Completed",
+      "boardId": "4",
+      "createdAt": "17/04/2023 10:35:35",
+      "tagColors": "green",
       "type": "task",
       "id": 2
     },
     {
-      "name": "etyry",
-      "tag": "rty",
+      "name": "Learn Vue.js",
+      "tag": "No Time",
       "boardId": "2",
-      "createdAt": "17/04/2023 04:58:28",
-      "tagColors": "red",
+      "createdAt": "17/04/2023 10:35:50",
+      "tagColors": "lime",
       "type": "task",
       "id": 3
+    },
+    {
+      "name": "Master Next.js",
+      "tag": "Secondary",
+      "boardId": "3",
+      "createdAt": "17/04/2023 10:36:05",
+      "tagColors": "yellow",
+      "type": "task",
+      "id": 4
     }
   ]
 }
