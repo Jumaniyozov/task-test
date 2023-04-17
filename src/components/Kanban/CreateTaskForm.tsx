@@ -5,6 +5,15 @@ import { DATE_FORMAT } from "@/utils/DateFormat";
 import { useTaskModalStore } from "@/store/tasks";
 import { CustomColorSelect } from "@/components/FormUtils/CustomColorSelect";
 import { createColors } from "@/utils/canban/randomTagColor";
+import { FileUploader } from "@/components/FormUtils/FileUploader";
+
+const toBase64 = (file: File) =>
+  new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => resolve(reader.result);
+    reader.onerror = (error) => reject(error);
+  });
 
 export const CreateTaskForm = () => {
   const { closeModal } = useTaskModalStore();
@@ -13,10 +22,17 @@ export const CreateTaskForm = () => {
   const colors = createColors();
   const [color, setColor] = useState(colors[0].color);
 
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     const formData = new FormData(evt.currentTarget);
     const currentDate = format(Date.now(), DATE_FORMAT.daysWithTime);
+    const uploadedFile = formData.get("file") as File;
+    let fileToString: string;
+    if (uploadedFile.name !== "") {
+      fileToString = (await toBase64(uploadedFile)) as string;
+      formData.set("file", fileToString);
+      formData.set("fileName", uploadedFile.name);
+    }
 
     formData.set("boardId", boardData?.id.toString() || "1");
     formData.set("createdAt", currentDate);
@@ -84,12 +100,30 @@ export const CreateTaskForm = () => {
             </div>
           </div>
           <div className="sm:col-span-4">
+            <label
+              htmlFor="description"
+              className="block text-sm font-medium text-gray-700"
+            >
+              Description
+            </label>
+            <div className="mt-1">
+              <textarea
+                id="description"
+                name="description"
+                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              />
+            </div>
+          </div>
+          <div className="sm:col-span-4">
             <CustomColorSelect
               label="Color"
               selected={color}
               colors={colors}
               handleSelect={handleColor}
             />
+          </div>
+          <div className="sm:col-span-4">
+            <FileUploader />
           </div>
         </div>
       </div>

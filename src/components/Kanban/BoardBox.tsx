@@ -29,7 +29,8 @@ export const BoardBox = (props: BoardBoxProps) => {
     pink: "bg-pink-100 text-pink-500",
   };
 
-  const { tag, tagColors, id, name, createdAt } = props.data;
+  const { tag, tagColors, id, name, createdAt, description, file, fileName } =
+    props.data;
 
   const submit = useSubmit();
 
@@ -38,6 +39,23 @@ export const BoardBox = (props: BoardBoxProps) => {
     formData.set("id", id.toString());
     formData.set("type", "task");
     submit(formData, { method: "DELETE" });
+  };
+
+  const handleDownload = async () => {
+    const fileData = file!.split(";base64,");
+
+    const ubuffer = Uint8Array.from(atob(fileData[1]), (c) => c.charCodeAt(0));
+
+    const sBase64 = fileData[1];
+    const arrayBuffer = new Uint8Array(
+      [...window.atob(sBase64)].map((char) => char.charCodeAt(0))
+    );
+    const fileLink = document.createElement("a");
+
+    fileLink.href = window.URL.createObjectURL(new Blob([arrayBuffer]));
+    fileLink.setAttribute("download", fileName!);
+    document.body.appendChild(fileLink);
+    fileLink.click();
   };
 
   return (
@@ -59,8 +77,11 @@ export const BoardBox = (props: BoardBoxProps) => {
         {tag}
       </span>
       <h4 className="mt-3 text-sm font-medium">{name}</h4>
-      <div className="flex items-center w-full mt-3 text-xs font-medium text-gray-400">
-        <div className="flex items-center">
+      {description && (
+        <p className="mt-3 text-sm border-t w-full py-2">{description}</p>
+      )}
+      <div className="flex justify-center items-center w-full mt-3 text-xs font-medium text-gray-400">
+        <div className="flex items-center flex-1">
           <svg
             className="w-4 h-4 text-gray-300 fill-current"
             xmlns="http://www.w3.org/2000/svg"
@@ -75,7 +96,24 @@ export const BoardBox = (props: BoardBoxProps) => {
           </svg>
           <span className="ml-1 leading-none">{createdAt}</span>
         </div>
+        {/*{file && (*/}
+
+        {/*)}*/}
       </div>
+      {file && (
+        <div className="flex mt-2 justify-end w-full">
+          <button
+            className={combineClassNames(
+              colorVariants[tagColors],
+              "rounded-lg p-2"
+            )}
+            onClick={handleDownload}
+            type="button"
+          >
+            Download a file
+          </button>
+        </div>
+      )}
     </>
   );
 };
