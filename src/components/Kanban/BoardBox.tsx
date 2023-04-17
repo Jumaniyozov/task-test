@@ -44,8 +44,6 @@ export const BoardBox = (props: BoardBoxProps) => {
   const handleDownload = async () => {
     const fileData = file!.split(";base64,");
 
-    const ubuffer = Uint8Array.from(atob(fileData[1]), (c) => c.charCodeAt(0));
-
     const sBase64 = fileData[1];
     const arrayBuffer = new Uint8Array(
       [...window.atob(sBase64)].map((char) => char.charCodeAt(0))

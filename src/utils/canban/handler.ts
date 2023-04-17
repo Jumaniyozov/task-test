@@ -96,7 +96,32 @@ const deleteBoardHandler = async (request: Request) => {
   }
 };
 
+const patchBoardHandler = async (request: Request) => {
+  const data = await request.formData();
+  const boardId = data.get("boardId");
+  const id = data.get("id");
+  const taskData = data.get("data");
+  let jsonData = {};
+  if (typeof taskData === "string") {
+    jsonData = JSON.parse(taskData);
+  }
+
+  const res = await fetch(`${baseURL}/tasks/${id}`, {
+    method: "PUT",
+    body: JSON.stringify({
+      ...jsonData,
+      boardId,
+    }),
+    headers: {
+      "content-type": "application/json",
+    },
+  });
+
+  return { ok: true };
+};
+
 export const canbanHandler = {
   postBoard: postBoardHandler,
   deleteBoard: deleteBoardHandler,
+  patchBoard: patchBoardHandler,
 };

@@ -26,27 +26,7 @@ export const KanbanActions = async ({request}: ActionFunctionArgs) => {
         }
 
         case "PATCH": {
-            const data = await request.formData();
-            const boardId = data.get('boardId');
-            const id = data.get('id');
-            const taskData = data.get('data');
-            let jsonData = {};
-            if (typeof taskData === "string") {
-                jsonData = JSON.parse(taskData);
-            }
-
-            await fetch(`${baseURL}/tasks/${id}`, {
-                method: "PUT",
-                body: JSON.stringify({
-                    ...jsonData,
-                    boardId
-                }),
-                headers: {
-                    "content-type": "application/json"
-                }
-            })
-
-            return {ok: true}
+            return canbanHandler.patchBoard(request);
         }
     }
 };
@@ -86,8 +66,6 @@ export const Kanban = () => {
         if (destination.droppableId === source.droppableId && destination.index === source.index) {
             return;
         }
-
-        // const sourcesColumn = boards.find(el => el.id === parseInt(source.droppableId));
 
         const task = tasks.find(el => el.id === parseInt(draggableId));
 
@@ -165,37 +143,3 @@ export const Kanban = () => {
         </div>
     );
 };
-// return (
-//     <div className="flex flex-col text-gray-700 bg-gradient-to-tr from-blue-200 via-indigo-200 to-pink-200 h-full">
-//         <BoardModal />
-//         <ToastContainer />
-//         <TaskModal />
-//         <div className="flex flex-grow px-10 mt-4 space-x-6 overflow-auto h-full p-2">
-//             {boards.map((board) => (
-//                 <div className="flex flex-col flex-shrink-0 w-72" key={board.id}>
-//                     <BoardHeader data={board} />
-//
-//                     <div className="flex flex-col pb-2 overflow-auto">
-//                         {tasks.map((task) => (
-//                             <Fragment key={task.id}>
-//                                 {task.boardId.toString() === board.id.toString() && (
-//                                     <BoardBox key={task.id} data={task} />
-//                                 )}
-//                             </Fragment>
-//                         ))}
-//                     </div>
-//                 </div>
-//             ))}
-//             <div className="flex flex-col flex-shrink-0 w-72">
-//                 <div className="flex items-center flex-shrink-0 h-10 px-2">
-//                     <button
-//                         onClick={handleBoardCreate}
-//                         className="flex items-center justify-center border-dashed border-2 p-2 border-blue-500 rounded-lg hover:border-none hover:bg-indigo-500 hover:text-indigo-100"
-//                     >
-//                         Add a new board +
-//                     </button>
-//                 </div>
-//             </div>
-//         </div>
-//     </div>
-// );

@@ -6,14 +6,7 @@ import { useTaskModalStore } from "@/store/tasks";
 import { CustomColorSelect } from "@/components/FormUtils/CustomColorSelect";
 import { createColors } from "@/utils/canban/randomTagColor";
 import { FileUploader } from "@/components/FormUtils/FileUploader";
-
-const toBase64 = (file: File) =>
-  new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = (error) => reject(error);
-  });
+import { toBase64 } from "@/utils/toBase64";
 
 export const CreateTaskForm = () => {
   const { closeModal } = useTaskModalStore();

@@ -150,7 +150,7 @@ export const MonthView = () => {
           </div>
         </div>
         <div className="flex bg-gray-200 text-xs leading-6 text-gray-700 lg:flex-auto">
-          <div className="hidden w-full lg:grid lg:grid-cols-7 lg:grid-rows-6 lg:gap-px">
+          <div className="w-full grid grid-cols-7 grid-rows-6 gap-px">
             {days.map((day) => (
               <div
                 key={day.key}
@@ -197,27 +197,3 @@ export const MonthView = () => {
     </div>
   );
 };
-// {events.length > 0 && (
-//     <ol className="mt-2" >
-//         {events.slice(0, 2).map((event) => (
-//             <li key={event.id}>
-//                 <a href={event.href} className="group flex">
-//                     <p className="flex-auto truncate font-medium text-gray-900 group-hover:text-indigo-600">
-//                         {event.name}
-//                     </p>
-//                     <time
-//                         dateTime={event.datetime}
-//                         className="ml-3 hidden flex-none text-gray-500 group-hover:text-indigo-600 xl:block"
-//                     >
-//                         {event.time}
-//                     </time>
-//                 </a>
-//             </li>
-//         ))}
-//         {day.events.length > 2 && (
-//             <li className="text-gray-500">
-//                 + {day.events.length - 2} more
-//             </li>
-//         )}
-//     </ol>
-// )}
