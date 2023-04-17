@@ -3,7 +3,8 @@ import { MonthView } from "@/components/Calendar/MonthView";
 import { useEventStore } from "@/store/events";
 import { calendarHandler } from "@/utils/calendar/handler";
 
-const baseURL = import.meta.env.VITE_API_URL;
+const baseURL = import.meta.env.PROD ? import.meta.env.VITE_API_PROD_URL : import.meta.env.VITE_API_URL;
+
 export const CalendarActions = async ({ request }: ActionFunctionArgs) => {
   switch (request.method) {
     case "POST": {

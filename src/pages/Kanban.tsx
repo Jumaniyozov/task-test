@@ -13,8 +13,9 @@ import {useTaskSuccess} from "@/hooks/useTaskAddSuccess";
 import {DragDropContext, Draggable, DropResult} from "react-beautiful-dnd";
 import {StrictModeDroppable} from "@/components/StrictModeDroppable";
 import {Loader} from "@/components/FormUtils/Loader";
+import * as process from "process";
 
-const baseURL = import.meta.env.VITE_API_URL;
+const baseURL = import.meta.env.PROD ? import.meta.env.VITE_API_PROD_URL : import.meta.env.VITE_API_URL;
 export const KanbanActions = async ({request}: ActionFunctionArgs) => {
     switch (request.method) {
         case "POST": {

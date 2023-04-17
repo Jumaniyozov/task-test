@@ -3,7 +3,7 @@ import { addHours, addMinutes, format, parseISO } from "date-fns";
 import { DATE_FORMAT } from "@/utils/DateFormat";
 import { useEventStore } from "@/store/events";
 
-const baseURL = import.meta.env.VITE_API_URL;
+const baseURL = import.meta.env.PROD ? import.meta.env.VITE_API_PROD_URL : import.meta.env.VITE_API_URL;
 
 const postHandler = async (request: Request) => {
   const formData = await request.formData();

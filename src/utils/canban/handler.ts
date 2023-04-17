@@ -1,7 +1,9 @@
 import { useBoardStore } from "@/store/boards";
 import { useTaskStore } from "@/store/tasks";
 
-const baseURL = import.meta.env.VITE_API_URL;
+const baseURL = import.meta.env.PROD
+  ? import.meta.env.VITE_API_PROD_URL
+  : import.meta.env.VITE_API_URL;
 
 const postBoardHandler = async (request: Request) => {
   const data = Object.fromEntries(await request.formData());
