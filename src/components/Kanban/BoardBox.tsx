@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { XMarkIcon } from "@heroicons/react/24/outline";
 import { combineClassNames } from "@/utils/combineClassNames";
 import { Task } from "@/store/tasks";
@@ -6,6 +6,7 @@ import { useSubmit } from "react-router-dom";
 
 interface BoardBoxProps {
   data: Task;
+  placeholder?: ReactNode;
 }
 
 export const BoardBox = (props: BoardBoxProps) => {
@@ -40,10 +41,7 @@ export const BoardBox = (props: BoardBoxProps) => {
   };
 
   return (
-    <div
-      className="relative flex flex-col items-start p-4 mt-3 bg-white rounded-lg cursor-pointer bg-opacity-90 group hover:bg-opacity-100"
-      draggable="true"
-    >
+    <>
       <button
         onClick={handleDelete}
         className="absolute top-0 right-0 flex items-center justify-center hidden w-6 h-6 mt-3 mr-2 group-hover:flex"
@@ -78,6 +76,6 @@ export const BoardBox = (props: BoardBoxProps) => {
           <span className="ml-1 leading-none">{createdAt}</span>
         </div>
       </div>
-    </div>
+    </>
   );
 };
