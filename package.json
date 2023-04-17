@@ -6,7 +6,7 @@
   "scripts": {
     "dev:server": "start npm run dev && start npm run server",
     "server": "json-server db/db.json",
-    "dev": "vite && json-server db/db.json",
+    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
